@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.io.StringWriter;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -10,6 +11,7 @@ import java.security.SecureRandom;
 import java.security.Security;
 import java.util.Map;
 import javax.security.auth.x500.X500Principal;
+import org.apache.commons.io.FileUtils;
 import org.spongycastle.jce.ECNamedCurveTable;
 import org.spongycastle.jce.provider.BouncyCastleProvider;
 import org.spongycastle.jce.spec.ECParameterSpec;
@@ -19,6 +21,7 @@ import org.spongycastle.pkcs.PKCS10CertificationRequest;
 import org.spongycastle.pkcs.PKCS10CertificationRequestBuilder;
 import org.spongycastle.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder;
 import org.spongycastle.util.io.pem.PemObject;
+import org.spongycastle.util.io.pem.PemObjectGenerator;
 import org.spongycastle.util.io.pem.PemWriter;
 
 public class GenerateCSR {
@@ -47,10 +50,6 @@ public class GenerateCSR {
 						"1.3.6.1.4.1.311.21.8.2200605.9715090.14372516.15973785.1368149.102.15135184.3454480"));
 		PKCS10CertificationRequestBuilder certificateBuilder = new JcaPKCS10CertificationRequestBuilder(subject, publicKey);
 		PKCS10CertificationRequest request = certificateBuilder.build(signGen);
-		StringWriter writer = new StringWriter();
-		PemWriter pemWriter = new PemWriter(writer);
-		pemWriter.writeObject(new PemObject("CERTIFICATE REQUEST", request.getEncoded()));
-		pemWriter.flush();
-		pemWriter.close();
+		FileUtils.writeByteArrayToFile(new File("csr/csr.csr"), request.getEncoded());
 	}
 }

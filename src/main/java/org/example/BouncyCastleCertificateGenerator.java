@@ -32,7 +32,7 @@ public class BouncyCastleCertificateGenerator {
 
     private static final String BC_PROVIDER = "BC";
     private static final String KEY_ALGORITHM = "RSA";
-    private static final String SIGNATURE_ALGORITHM = "secp256k1";
+    private static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
 
     public static void main(String[] args) throws Exception{
         // Add the BouncyCastle Provider

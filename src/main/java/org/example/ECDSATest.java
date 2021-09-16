@@ -381,5 +381,4 @@ public class ECDSATest {
         X509Certificate c = new JcaX509CertificateConverter().getCertificate(certHolder);//.setProvider("SC").getCertificate(certHolder);
         return c;
     }
-}
-*/
+}*/

@@ -10,13 +10,13 @@ import java.security.Security;
 
 import javax.security.auth.x500.X500Principal;
 
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.openssl.PEMWriter;
-import org.bouncycastle.operator.ContentSigner;
-import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
-import org.bouncycastle.pkcs.PKCS10CertificationRequest;
-import org.bouncycastle.pkcs.PKCS10CertificationRequestBuilder;
-import org.bouncycastle.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder;
+import org.spongycastle.jce.provider.BouncyCastleProvider;
+import org.spongycastle.openssl.PEMWriter;
+import org.spongycastle.operator.ContentSigner;
+import org.spongycastle.operator.jcajce.JcaContentSignerBuilder;
+import org.spongycastle.pkcs.PKCS10CertificationRequest;
+import org.spongycastle.pkcs.PKCS10CertificationRequestBuilder;
+import org.spongycastle.pkcs.jcajce.JcaPKCS10CertificationRequestBuilder;
 
 public class GenerateCSR {
 
@@ -24,7 +24,7 @@ public class GenerateCSR {
 		//loading the BC provider and setting it as a default provider
 		Provider bc = new BouncyCastleProvider();
 		Security.insertProviderAt(bc, 1);
-		
+
 		KeyPairGenerator gen = KeyPairGenerator.getInstance("RSA");
 		gen.initialize(2048);
 		KeyPair pair = gen.generateKeyPair();
